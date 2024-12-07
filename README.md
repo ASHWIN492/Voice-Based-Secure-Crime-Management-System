@@ -1,4 +1,4 @@
-# Crime Management System
+# Voice-Based-Secure-Crime-Management-System
 
 ## Overview
 
@@ -7,9 +7,9 @@ This is a comprehensive web application for crime management and reporting, buil
 ## Features
 
 ### User Features
-- User Registration
+- Voice-Based User Registration
 - View Criminals Database
-- Register Complaints
+- Voice-Based Register Complaints
 - SOS Location Tracking
 - Complaint Submission with Photo/Video Evidence
 - Encrypted Data Storage
