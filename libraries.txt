@@ -1,4 +1,0 @@
-pip install mysql-connector-python==8.0.5
-pip install Flask
-pip install matplotlib
-pip install pandas
