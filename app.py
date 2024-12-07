@@ -9,14 +9,19 @@ import matplotlib.pyplot as plt
 from cryptography.fernet import Fernet
 import base64
 import subprocess
+from dotenv import load_dotenv
 import os
+load_dotenv()
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
 # Load and set up the Fernet key
-fernet_key = os.getenv('FERNET_KEY').encode()
-cipher_suite = Fernet(fernet_key)
+fernet_key = os.getenv('FERNET_KEY')
+if fernet_key is None:
+    raise ValueError("FERNET_KEY environment variable is not set.")
+
+cipher_suite = Fernet(fernet_key.encode())
 
 def dbconnection():
     con = mq.connect(host='localhost', database='crime',user='root',password='root')
@@ -509,5 +514,5 @@ def crimerates():
 
 
     
-# if __name__ == '__main__':
-#     app.run(debug=True,host='0.0.0.0',port=5000)
+if __name__ == '__main__':
+    app.run(debug=True,host='0.0.0.0',port=5000)
