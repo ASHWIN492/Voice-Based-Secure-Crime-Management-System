@@ -9,11 +9,14 @@ import matplotlib.pyplot as plt
 from cryptography.fernet import Fernet
 import base64
 import subprocess
+import os
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'secret_key'
-key = b'cAtnnFlf_IYaDwMX1twUVg3VDityfm08ushF7M8J4w4='
-cipher_suite = Fernet(key)
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
+
+# Load and set up the Fernet key
+fernet_key = os.getenv('FERNET_KEY').encode()
+cipher_suite = Fernet(fernet_key)
 
 def dbconnection():
     con = mq.connect(host='localhost', database='crime',user='root',password='root')
