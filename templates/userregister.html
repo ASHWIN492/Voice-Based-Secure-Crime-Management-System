@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Registration</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            background-image: url("/static/img3.jpg");
+            background-size: 100%;
+background-repeat: no-repeat;
+background-position-y: 10px;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #f4f4f4;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        input[type="text"], input[type="email"], input[type="number"], input[type="password"], select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            display: block;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="submit"] {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Chatbot Styles */
+        .chatbot-container {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            width: 300px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .chat-header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border-radius: 10px 10px 0 0;
+        }
+        .chat-messages {
+            padding: 10px;
+            height: 300px;
+            overflow-y: auto;
+            border-bottom: 1px solid #ddd;
+        }
+        .bot-message, .user-message {
+            margin: 5px 0;
+            padding: 8px;
+            border-radius: 10px;
+            max-width: 80%;
+        }
+        .bot-message {
+            background-color: #eee;
+        }
+        .user-message {
+            background-color: #daf7a6;
+            align-self: flex-end;
+            text-align: right;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* For scrolling to bottom */
+        .chat-messages::-webkit-scrollbar {
+            width: 5px;
+        }
+        .chat-messages::-webkit-scrollbar-thumb {
+            background-color: #888;
+        }
+        .chat-messages::-webkit-scrollbar-thumb:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+  <div class="navbar">
+    <a href="userregisterpage" class="active">USER REGISTER</a>
+    <a href="loginpage">LOGIN</a>
+    <a href="/" >HOME</a>
+    
+  </div>
+
+  <div class="flashes">
+    {% for message in get_flashed_messages() %}
+      {{ message }}
+    {% endfor %}
+  </div>
+
+  <div class="container">
+    <h2>Chatbot Registration Form</h2>
+    <form id="registerForm" action="userregister" method="POST">
+        <div class="form-group">
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" name="name" placeholder="Your Name" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Your Email:</label>
+            <input type="email" id="email" name="email" placeholder="Your Email" required>
+        </div>
+        <div class="form-group">
+            <label for="phone">Your Phone:</label>
+            <input type="number" id="phone" name="phone" placeholder="Your Phone" required>
+        </div>
+        <div class="form-group">
+            <label for="gender">Your Gender:</label>
+            <input type="text" id="gender" name="gender" placeholder="Your Gender" required>
+        </div>
+        <div class="form-group">
+            <label for="aadno">Aadhar Number:</label>
+            <input type="number" id="aadno" name="aadno" placeholder="Aadhar Number" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Your Password:</label>
+            <input type="password" id="password" name="password" placeholder="Your Password" required>
+        </div>
+        <input type="submit" value="Register">
+    </form>
+  </div>
+
+  <!-- Chatbot Section -->
+  <div class="chatbot-container">
+      <div class="chat-header">Chatbot</div>
+      <div id="chat" class="chat-messages"></div>
+  </div>
+
+  <script>
+    console.log("start:")
+     const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+     recognition.lang = 'en-US';
+    const chatContainer = document.getElementById('chat');
+    const registerForm = document.getElementById('registerForm');
+    let currentStep = 0;
+
+    let fields = [
+        { id: 'name', question: 'What is your name?' },
+        { id: 'email', question: 'say your gmail id do not mention @gmail.com' },
+        { id: 'phone', question: 'What is your phone number?' },
+        { id: 'gender', question: 'What is your gender?' },
+        { id: 'aadno', question: 'What is your Aadhar number?' },
+        { id: 'password', question: 'Please set your password.' }
+    ];
+
+    function startVoiceInteraction() {
+        addMessage('bot-message', fields[currentStep].question);
+        speak(fields[currentStep].question);
+    }
+
+    function speak(message) {
+        const speech = new SpeechSynthesisUtterance(message);
+        window.speechSynthesis.speak(speech);
+        speech.onend = () => listenForAnswer();
+    }
+
+    function listenForAnswer() {
+       
+        recognition.start();
+
+        recognition.onresult = (event) => {
+            const userResponse = event.results[0][0].transcript.trim();
+            handleUserResponse(userResponse);
+        };
+
+        recognition.onerror = () => {
+            alert('Sorry, I could not understand that. Please try again.');
+            speak(fields[currentStep].question);
+        };
+    }
+
+    function handleUserResponse(response) {
+        console.log("response",response)
+        addMessage('user-message', response);
+        
+        
+        if (fields[currentStep].id === 'gender') {
+            // Handle male/female and fix common transcription issues
+             let gender = response.toLowerCase();
+            console.log(gender)
+            if (gender.includes("female")) {
+                document.getElementById('gender').value = 'Female';
+            } else if (gender.includes("male")) {
+                document.getElementById('gender').value = 'Male';
+            }
+            else if (gender.includes("mail")) {
+                document.getElementById('gender').value = 'Male';
+            }
+            else if (gender.includes("ma")) {
+                document.getElementById('gender').value = 'Male';
+            }
+             else {
+                document.getElementById('gender').value = gender; // fallback if no proper gender found
+            }
+        } else if (fields[currentStep].id === 'email') {
+            // Append @gmail.com if not already included
+            let email = response.toLowerCase().replace(/\s+/g, ''); // Remove spaces
+            if (!email.includes('@')) {
+                email += '@gmail.com';
+            }
+            document.getElementById('email').value = email;
+        } else if (fields[currentStep].id === 'phone' || fields[currentStep].id === 'aadno') {
+            // Handle phone and Aadhar numbers
+            const number = response.replace(/\D/g, ''); // remove non-digit characters
+            if (fields[currentStep].id === 'phone') {
+                if (number.length == 10) {
+                    document.getElementById('phone').value = number;
+                } else {
+                    addMessage('bot-message', 'Please provide a valid phone number.');
+                    speak('Please provide a valid phone number.');
+                    return; // return early if invalid
+                }
+            } else if (fields[currentStep].id === 'aadno') {
+                if (number.length === 12) {
+                    document.getElementById('aadno').value = number;
+                } else {
+                    addMessage('bot-message', 'Please provide a valid Aadhar number.');
+                    speak('Please provide a valid Aadhar number.');
+                    return; // return early if invalid
+                }
+            }
+        } else {
+            // For other fields, directly assign response to the respective input field
+            document.getElementById(fields[currentStep].id).value = response;
+        }
+
+        // Move to the next step
+        currentStep++;
+        if (currentStep < fields.length) {
+            addMessage('bot-message', fields[currentStep].question);
+            speak(fields[currentStep].question);
+        } else {
+            confirmDetails();
+        }
+    }
+
+    function addMessage(className, text) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = className;
+        messageDiv.textContent = text;
+        chatContainer.appendChild(messageDiv);
+        chatContainer.scrollTop = chatContainer.scrollHeight; // Scroll to bottom
+    }
+
+    function speak2(message) {
+        const speech2 = new SpeechSynthesisUtterance(message);
+        window.speechSynthesis.speak(speech2);
+        speech2.onend = () => listenForConfirmation();
+    }
+
+    function speak3(message) {
+        const speech3 = new SpeechSynthesisUtterance(message);
+        window.speechSynthesis.speak(speech3);
+        
+    }
+
+    function confirmDetails() {
+    const confirmationMessage = "say submit to submit or no to manually edit and submit";
+    addMessage('bot-message', confirmationMessage);
+    speak2(confirmationMessage);
+    }
+  
+// Update the error handling in listenForConfirmation
+function listenForConfirmation() {
+        //alert("hello")
+        
+        console.log("inside listening:")
+        recognition.start();
+        console.log("listening completed:")
+        recognition.onresult = (event) => {
+          
+           let userResponse2 = event.results[0][0].transcript.trim();
+           addMessage('user-message', userResponse2);
+            autosubmiter(userResponse2);
+        };
+        function autosubmiter(userResponse2){
+        //console.log("inside listening:")
+        var sub=userResponse2.toLowerCase()
+        //alert("confirm")
+        console.log(sub); // Debugging log
+        if (sub.includes("submit")) {
+            // If user confirms with 'yes'
+            //alert("submiting form")
+            registerForm.submit(); 
+        } else if (sub.includes("no")) {
+            // If user denies with 'no'
+            addMessage('bot-message', 'Please correct the fields manually and click submit.');
+            speak3("Please correct the fields manually and click submit.");
+        } else {
+            // If speech recognition can't understand
+            addMessage('bot-message', 'Sorry, I could not understand that. Please try again.');
+            speak("Sorry, I could not understand that. Please try again.");
+        }
+    };
+
+    recognition.onerror = (event) => {
+        console.error("Recognition error:", event.error);
+        addMessage('bot-message', `Error occurred: ${event.error}. Please try again.`);
+        speak(`Sorry, there was an error: ${event.error}. Please try again.`);
+    };
+
+    recognition.onspeechend = () => {
+        console.log("Speech ended.");
+        recognition.stop();
+    };
+
+    recognition.onend = () => {
+        console.log("Recognition has ended.");
+        // You may want to restart recognition or handle it differently here
+    };
+}
+
+
+
+    // Start interaction when the page loads
+    window.onload = () => {
+        startVoiceInteraction();
+    };
+</script>
+
+</body>
+</html>

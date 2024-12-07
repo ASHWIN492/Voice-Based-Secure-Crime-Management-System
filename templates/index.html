@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Home Page</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+      body{
+        background-image: url("../static/img2.jpg");
+        background-repeat: no-repeat;
+        background-size: 100%;
+      }
+      </style>
+     <script>
+      // Function to fetch user's location and handle the SOS action
+      function fetchLocation() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(showPosition, showError);
+        } else {
+          alert("Geolocation is not supported by this browser.");
+        }
+      }
+
+      // Function to handle the success callback
+      function showPosition(position) {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+
+        // Sending latitude and longitude to the Flask server
+        fetch('/send_location', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ latitude: latitude, longitude: longitude }),
+        })
+        .then(response => response.json())
+        .then(data => {
+          alert('SOS Alert Activated! Your location has been sent.\nLatitude: ' + latitude + '\nLongitude: ' + longitude);
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+      }
+
+      // Function to handle errors in geolocation
+      function showError(error) {
+        switch(error.code) {
+          case error.PERMISSION_DENIED:
+            alert("User denied the request for Geolocation.");
+            break;
+          case error.POSITION_UNAVAILABLE:
+            alert("Location information is unavailable.");
+            break;
+          case error.TIMEOUT:
+            alert("The request to get user location timed out.");
+            break;
+          case error.UNKNOWN_ERROR:
+            alert("An unknown error occurred.");
+            break;
+        }
+      }
+    </script>
+  </head>
+  <body >
+    <div class="navbar">
+      
+      <a href="userregisterpage">USER REGISTER</a>
+      <a href="loginpage">LOGIN</a>
+      <a href="/" class="active">HOME</a>
+      
+    </div>
+  
+      <br>
+    
+      <center>
+        
+        <form class="form" action="https://www.google.com/search" method="get" target="_blank">
+         
+          <input type="text" id="search" name="q" placeholder="Search your query here">
+          <input type="submit" value="SEARCH">
+        </form>
+        <br><br><br>
+        <H1 style="color: white; background-color: black; ">Voice-Based Secure Crime Management System</H1>
+      <button class="sos-button" onclick="fetchLocation()">SOS</button>
+      
+    </center>
+    </div>
+    
+  </body>
+</html>

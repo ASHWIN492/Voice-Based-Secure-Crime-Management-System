@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FORGOT PASSWORD</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+body{
+
+background-image: url("/static/background.jpg") ;
+background-size: 100%;
+background-repeat: no-repeat;
+background-position-y: 40px;
+
+}
+    </style>
+  </head>
+  <body >
+    <div class="navbar">
+      <a href="/" >HOME</a>
+      <a href="loginpage">LOGIN</a>
+      <a href="userregisterpage">USER REGISTER</a>
+      <a href="allfeedbacks">VIEW FEEDBACKS</a>
+      
+    </div>
+<br><br><br><br>
+
+    <div class="form">
+      <h2>FORGOT YOUR PASSWORD?</h2>
+      <div class="flashes">
+        {% for message in get_flashed_messages() %}
+          {{ message }}
+        {% endfor %}
+      </div>
+      <form action="getmypass" method="POST">
+
+        
+        <label for="name" id="selectedOptionLabel">EMAIL:</label>
+        <input type="text" id="email" name="email" placeholder="Enter your registered email id" required>
+        
+       
+        <input type="submit" value="SEND PASSWORD TO MY EMAIL">
+        <br><br>
+      </form>
+    </div>
+    
+    
+  </body>
+</html>

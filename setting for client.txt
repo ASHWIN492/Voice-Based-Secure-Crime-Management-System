@@ -1,0 +1,5 @@
+chrome://flags
+search
+Insecure origins treated as secure
+enable and add the url in text area
+browser will relaunch

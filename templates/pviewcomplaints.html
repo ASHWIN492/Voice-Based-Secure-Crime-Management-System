@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>COMPLAINTS</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <link rel="stylesheet" type="text/css" href="/static/table.css">
+    <script src="/static/jquery.min.js"></script>
+    <style>
+        body {
+            background-image: url("/static/img3.jpg");
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-position-y: 40px;
+        }
+
+        /* Modal Styling */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1; 
+            padding-top: 100px; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            background-color: rgba(0,0,0,0.4); 
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 30%;
+            border-radius: 10px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover, .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .popup-input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        .btn.cancel {
+            background-color: #f44336;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="navbar">
+        <a href="/">LOGOUT</a>
+        <a href="viewsos">SOS LIST</a>
+        <a href="complaintslist" class="active">COMPLAINTS LIST</a>
+        <a href="addcriminalpage">ADD CRIMINAL</a>
+        <a href="pviewcriminals">CRIMINAL LIST</a>
+    </div>
+
+    <br>
+
+    <center>
+        <h1>COMPLAINTS</h1>
+        <div class="flashes">
+            {% for message in get_flashed_messages() %}
+                {{ message }}
+            {% endfor %}
+        </div>
+
+        <table id="mytable">
+            <thead>
+                <tr>
+                    <th>CRIME TYPE</th>
+                    <th>PLACE</th>
+                    <th>DESCRIPTION</th>
+                    <th>LOCATION</th>
+                    <th>DATE</th>
+                    <th>TIME</th>
+                    <th>PHOTO</th>
+                    <th>VIDEO</th>
+                    <th>STATUS</th>
+                    <th>ACTION</th>
+                   
+                </tr>
+            </thead>
+            <tbody>
+                {% for r in res %}
+                <tr>
+                    <td>{{ r.crimetype }}</td>
+                    <td>{{ r.place }}</td>
+                    <td><textarea rows="3" cols="15" readonly>{{ r.des }}</textarea> </td>
+                    <td><a href="https://www.google.com/maps?q={{ r.lat }},{{ r.longit }}" class="linkbtn" target="_blank">VIEW LOCATION</a> </td>
+                    <td>{{ r.cdate }}</td>
+                    <td>{{ r.ctime}}</td>
+                    <td><a href="viewphoto?pname={{r.photo}}" class="linkbtn" target="_blank">VIEW PHOTO</a> </td>
+                    <td><a href="viewvideo?vname={{r.video}}" class="linkbtn" target="_blank">VIEW VIDEO</a> </td>
+                    <td style="background-color: red; color: white;">{{ r.status }}</td>
+                    <td><a href="#" class="linkbtn" onclick="openPopup({{ r.id }})">UPDATE COMPLAINT</a></td>
+                   
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </center>
+
+    <!-- Modal Popup -->
+    <div id="complaintModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <h2>UPDATE COMPLAINT STATUS</h2>
+            <input type="text" id="complaintText" class="popup-input" placeholder="Enter Status"></textarea>
+            <button class="btn" id="submitComplaint">Submit</button>
+            <button class="btn cancel" onclick="closePopup()">Cancel</button>
+        </div>
+    </div>
+
+    <script>
+        let complaintId = null;
+
+        // Function to open popup
+        function openPopup(id) {
+            complaintId = id;  // Capture complaint ID
+            document.getElementById('complaintModal').style.display = "block";
+        }
+
+        // Function to close popup
+        function closePopup() {
+            document.getElementById('complaintModal').style.display = "none";
+            complaintId = null;  // Reset complaint ID
+        }
+
+        // On Submit, send data to Flask
+        document.getElementById('submitComplaint').addEventListener('click', function() {
+            const updateText = document.getElementById('complaintText').value;
+
+            if (updateText.trim() === "") {
+                alert("Please enter the complaint update.");
+                return;
+            }
+
+            $.ajax({
+                url: '/updatecomplaint',
+                type: 'POST',
+                data: JSON.stringify({ id: complaintId, update: updateText }),
+                contentType: 'application/json',
+                success: function(response) {
+                    alert("Complaint updated successfully!");
+                    closePopup();
+                    location.reload();  // Reload the page to reflect changes
+                },
+                error: function(error) {
+                    alert("Failed to update complaint.");
+                    closePopup();
+                }
+            });
+        });
+    </script>
+  </body>
+</html>

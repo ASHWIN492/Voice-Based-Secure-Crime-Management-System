@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Criminals Details</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .bird-container {
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: 34px;
+        }
+        .bird-item {
+            width: 250px;
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+        .bird-item img {
+            width: 250px;
+            height: 250px;
+        }
+        
+    </style>
+</head>
+<body>
+  <div class="navbar">
+    <a href="/">LOGOUT</a>
+    <a href="crimerates" target="_blank" >VIEW CRIME RATE</a>
+    <a href="viewcomplaintspage">VIEW COMPLAINT STATUS</a>
+    <a href="regcomplaintpage" >REGISTER COMPLAINT</a>
+    <a href="uviewcriminals" class="active">CRIMINAL LIST</a>
+
+</div>
+  
+    <center>
+        <h1>CRIMINALS DETAILS</h1>
+        <div class="flashes">
+            {% for message in get_flashed_messages() %}
+              {{ message }}
+            {% endfor %}
+          </div>
+    <div class="bird-container">
+        {% for r in res %}
+        <div class="bird-item">
+           
+            <img src="../static/uploads/criminals/{{r[6]}} " alt="{{ r[1] }}">
+       
+            <p><strong>Name:</strong> {{ r[1] }}</p>
+            <p><strong>Crimes:</strong> {{ r[2] }}</p>
+            <p><strong>Height:</strong> {{ r[3] }} Ft</p>
+            <p><strong>Identification:</strong> {{ r[4] }}</p>
+            <textarea rows="4" cols="30" readonly>{{r[5]}}</textarea><br><br>
+            
+        </div>
+        {% endfor %}
+    </div>
+</center>
+</body>
+</html>

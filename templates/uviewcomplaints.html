@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>COMPLAINTS</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <link rel="stylesheet" type="text/css" href="/static/table.css"
+    <script src="/static/jquery.min.js"></script>
+    <style>
+        body{
+        
+        background-image: url("/static/img3.jpg") ;
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-position-y:40px;
+        
+        }
+        </style>
+  </head>
+  <body>
+    <div class="navbar">
+      <a href="/">LOGOUT</a>
+      <a href="crimerates" target="_blank" >VIEW CRIME RATE</a>
+      <a href="viewcomplaintspage" class="active">VIEW COMPLAINT STATUS</a>
+      <a href="regcomplaintpage"  >REGISTER COMPLAINT</a>
+      <a href="uviewcriminals" >CRIMINAL LIST</a>
+  </div>
+
+<br>
+
+  <center><h1>YOUR COMPLAINTS</h1>
+    <div class="flashes">
+    
+        {% for message in get_flashed_messages() %}
+          {{ message }}
+        {% endfor %}
+    
+      </div>
+<table id="mytable">
+    <thead>
+        <tr>
+            <th>CRIME TYPE</th>
+            <th>PLACE</th>
+            <th>DESCRIPTION</th>
+            <th>LOCATION</th>
+            <th>COMPLAINT DATE</th>
+            <th>COMPLAINT TIME</th>
+            <th>PHOTO</th>
+            <th>VIDEO</th>
+            <th>STATUS</th>
+            <th>ACTIION</th>
+
+           
+            
+        </tr>
+    </thead>
+    <tbody>
+        {% for r in res %}
+        <tr>
+            <td>{{ r.crimetype }}</td>
+            <td>{{ r.place }}</td>
+            <td><textarea rows="3" cols="15" readonly>{{ r.des }}</textarea> </td>
+            <td><a href="https://www.google.com/maps?q={{ r.lat }},{{ r.longit }}" class="linkbtn" target="_blank">VIEW LOCATION</a> </td>
+            <td>{{ r.cdate }}</td>
+            <td>{{ r.ctime}}</td>
+            <td><a href="viewphoto?pname={{r.photo}}" class="linkbtn" target="_blank">VIEW PHOTO</a> </td>
+            <td><a href="viewvideo?vname={{r.video}}" class="linkbtn" target="_blank">VIEW VIDEO</a> </td>
+            <td style="background-color: red; color: white;">{{ r.status }}</td>
+            <td><a href="deletecomplaint?id={{r.uid}}" class="delete">DELETE COMPLAINT</a></td>
+
+           
+            
+          
+           
+           
+            
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</center>
+  </body>
+</html>

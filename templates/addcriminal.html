@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ADD PACKAGE</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+      body{
+      
+      background-image: url("/static/background.jpg") ;
+      background-size: 100%;
+      background-repeat: no-repeat;
+      background-position-y:40px;
+      
+      }
+          </style>
+  </head>
+  <body >
+    <div class="navbar">
+      <a href="/">LOGOUT</a>
+      <a href="viewsos" >SOS LIST</a>
+      <a href="complaintslist">COMPLAINTS LIST</a>
+      <a href="addcriminalpage" class="active">ADD CRIMINAL</a>
+      <a href="pviewcriminals">CRIMINAL LIST</a>
+  </div>
+<br>
+
+    <div class="form">
+      <h2>ADD CRIMINAL</h2>
+      <div class="flashes">
+        {% for message in get_flashed_messages() %}
+          {{ message }}
+        {% endfor %}
+      </div>
+      <form action="savecriminal" method="POST" enctype="multipart/form-data">
+
+       
+
+        <label for="cname">CRIMINAL NAME:</label>
+        <input type="text" id="cname" name="cname"  oninput="convertToUppercase()" required>
+
+        <label for="crimes">CRIMES DONE:</label>
+        <input type="text" id="crimes" name="crimes" placeholder="eg : Robbery, hijack..." required>
+
+        <label for="height">HEIGHT IN Feet:</label>
+        <input type="number" id="height" name="height" required>
+
+        <label for="identification">KEY IDENTIFICATION:</label>
+        <input type="text" id="identification" name="identification" placeholder="eg : mole on left cheek.." required>
+
+        <label for="description">DESCRIPTION:</label>
+        <textarea rows="3" cols="15" name="description" required></textarea>
+
+        <label for="cimage">CHOOSE IMAGE:</label>
+        <input type="file" name="photo" accept="image/*" required>
+
+        <input type="submit" value="SUBMIT">
+      </form>
+    </div>
+    <br><br><br>
+    <script>
+      function convertToUppercase() {
+          var inputField = document.getElementById("cname");
+          var inputValue = inputField.value;
+          inputField.value = inputValue.toUpperCase();
+      }
+      </script>
+    
+  </body>
+</html>

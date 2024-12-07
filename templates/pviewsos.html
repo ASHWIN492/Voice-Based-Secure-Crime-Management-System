@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SOS LIST</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <link rel="stylesheet" type="text/css" href="/static/table.css"> <!-- Fixed missing closing tag -->
+    <script src="/static/jquery.min.js"></script>
+    <style>
+        .linkbtn {
+            padding: 5px;
+            background-color: red;
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="/">LOGOUT</a>
+        <a href="viewsos" class="active">SOS LIST</a>
+        <a href="complaintslist">COMPLAINTS LIST</a>
+        <a href="addcriminalpage">ADD CRIMINAL</a>
+        <a href="pviewcriminals">CRIMINAL LIST</a>
+    </div>
+    <br>
+
+    <center>
+        <h1>SOS LIST</h1>
+        <div class="flashes">
+            {% for message in get_flashed_messages() %}
+                {{ message }}
+            {% endfor %}
+        </div>
+        <table id="mytable">
+            <thead>
+                <tr>
+                    <th>LATITUDE</th>
+                    <th>LONGITUDE</th>
+                    <th>DATE</th>
+                    <th>TIME</th>
+                    <th>ACTION</th> <!-- Added header for action column -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for r in res %}
+                <tr>
+                    <td>{{ r[1] }}</td>
+                    <td>{{ r[2] }}</td>
+                    <td>{{ r[3] }}</td>
+                    <td>{{ r[4] }}</td>
+                    <td>
+                        <a href="https://www.google.com/maps?q={{ r[1] }},{{ r[2] }}" class="linkbtn" target="_blank">VIEW LOCATION</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </center>
+</body>
+</html>

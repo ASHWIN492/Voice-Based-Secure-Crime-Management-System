@@ -1,0 +1,467 @@
+[
+    {
+        "label": "Flask",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "redirect",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "url_for",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "flash",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "session",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "jsonify",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "mysql.connector",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "mysql.connector",
+        "description": "mysql.connector",
+        "detail": "mysql.connector",
+        "documentation": {}
+    },
+    {
+        "label": "Error",
+        "importPath": "mysql.connector",
+        "description": "mysql.connector",
+        "isExtraImport": true,
+        "detail": "mysql.connector",
+        "documentation": {}
+    },
+    {
+        "label": "Markup",
+        "importPath": "markupsafe",
+        "description": "markupsafe",
+        "isExtraImport": true,
+        "detail": "markupsafe",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "pandas",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pandas",
+        "description": "pandas",
+        "detail": "pandas",
+        "documentation": {}
+    },
+    {
+        "label": "requests",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "requests",
+        "description": "requests",
+        "detail": "requests",
+        "documentation": {}
+    },
+    {
+        "label": "matplotlib.pyplot",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "matplotlib.pyplot",
+        "description": "matplotlib.pyplot",
+        "detail": "matplotlib.pyplot",
+        "documentation": {}
+    },
+    {
+        "label": "Fernet",
+        "importPath": "cryptography.fernet",
+        "description": "cryptography.fernet",
+        "isExtraImport": true,
+        "detail": "cryptography.fernet",
+        "documentation": {}
+    },
+    {
+        "label": "base64",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "base64",
+        "description": "base64",
+        "detail": "base64",
+        "documentation": {}
+    },
+    {
+        "label": "subprocess",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "subprocess",
+        "description": "subprocess",
+        "detail": "subprocess",
+        "documentation": {}
+    },
+    {
+        "label": "dbconnection",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def dbconnection():\n    con = mq.connect(host='localhost', database='crime',user='root',password='root')\n    return con\n@app.route('/')\ndef home():\n    return render_template('index.html', title='home')\n@app.route('/loginpage')\ndef loginpage():\n    return render_template('login.html',title='login')\n@app.route('/userregisterpage')",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "home",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def home():\n    return render_template('index.html', title='home')\n@app.route('/loginpage')\ndef loginpage():\n    return render_template('login.html',title='login')\n@app.route('/userregisterpage')\ndef registerpage():\n    return render_template('userregister.html',title='register')\n@app.route('/addcriminalpage')\ndef addcriminalpage():",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "loginpage",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def loginpage():\n    return render_template('login.html',title='login')\n@app.route('/userregisterpage')\ndef registerpage():\n    return render_template('userregister.html',title='register')\n@app.route('/addcriminalpage')\ndef addcriminalpage():\n    return render_template('addcriminal.html',title='add criminal')\n@app.route('/regcomplaintpage')\ndef regcomplaintpage():",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "registerpage",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def registerpage():\n    return render_template('userregister.html',title='register')\n@app.route('/addcriminalpage')\ndef addcriminalpage():\n    return render_template('addcriminal.html',title='add criminal')\n@app.route('/regcomplaintpage')\ndef regcomplaintpage():\n    return render_template('regcomplaint.html',title='Register complaint')\n@app.route('/viewsos')\ndef viewsos():",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "addcriminalpage",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def addcriminalpage():\n    return render_template('addcriminal.html',title='add criminal')\n@app.route('/regcomplaintpage')\ndef regcomplaintpage():\n    return render_template('regcomplaint.html',title='Register complaint')\n@app.route('/viewsos')\ndef viewsos():\n    current_date = datetime.now().strftime('%Y-%m-%d')\n    con = dbconnection()\n    cursor = con.cursor()",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "regcomplaintpage",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def regcomplaintpage():\n    return render_template('regcomplaint.html',title='Register complaint')\n@app.route('/viewsos')\ndef viewsos():\n    current_date = datetime.now().strftime('%Y-%m-%d')\n    con = dbconnection()\n    cursor = con.cursor()\n    cursor.execute(\"select * from sos where dat='{}' ORDER BY id DESC\".format(\n        current_date))\n    res = cursor.fetchall()",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "viewsos",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def viewsos():\n    current_date = datetime.now().strftime('%Y-%m-%d')\n    con = dbconnection()\n    cursor = con.cursor()\n    cursor.execute(\"select * from sos where dat='{}' ORDER BY id DESC\".format(\n        current_date))\n    res = cursor.fetchall()\n    return render_template('pviewsos.html',res=res)\n@app.route('/uviewcriminals')\ndef uviewcriminals():",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "uviewcriminals",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def uviewcriminals():\n    con = dbconnection()\n    cursor = con.cursor()\n    cursor.execute(\"select * from criminals\")\n    res = cursor.fetchall()\n    if res==[]:\n        message = Markup(\"<h3>Failed! criminals not found</h3>\")\n        flash(message)\n        return render_template('uviewcriminals.html', title='criminals')\n    else:",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "viewcomplaintspage",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def viewcomplaintspage():\n    uid = session['uid']\n    con = dbconnection()\n    cursor = con.cursor()\n    cursor.execute(\"select * from complaints where uid={}\".format(int(uid)))\n    res = cursor.fetchall()\n    if res==[]:\n        message = Markup(\"<h3>Failed! Complaints not found</h3>\")\n        flash(message)\n        return render_template('uviewcomplaints.html', title='complaints')",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "viewcomplaintspage",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def viewcomplaintspage():\n    print(\"inside\")\n    con = dbconnection()\n    cursor = con.cursor()\n    cursor.execute(\"SELECT crimetype, place, des, lat, longit, cdate, ctime, photo, video, status, uid FROM complaints\")\n    complaints = cursor.fetchall()\n    decrypted_complaints = []\n    for complaint in complaints:\n        decrypted_complaint = {\n            'crimetype': decrypt_data(complaint[0]),",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "complaintslist",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def complaintslist():\n    con = dbconnection()\n    cursor = con.cursor()\n    '''cursor.execute(\"select * from complaints ORDER BY id DESC\")\n    res = cursor.fetchall()'''\n    cursor.execute(\"SELECT id, crimetype, place, des, lat, longit, cdate, ctime, photo, video, status, uid FROM complaints order by id desc\")\n    res = cursor.fetchall()\n    if res==[]:\n        message = Markup(\"<h3>Failed! Complaints not found</h3>\")\n        flash(message)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "viewphoto",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def viewphoto():\n    path = request.args.get('pname')\n    return render_template('viewimage.html', path=path)\n@app.route('/viewvideo')\ndef viewvideo():\n    path = request.args.get('vname')\n    return render_template('viewvideo.html', path=path)\n@app.route('/userregister', methods=['GET', 'POST'])\ndef register():\n    if request.method == 'POST':",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "viewvideo",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def viewvideo():\n    path = request.args.get('vname')\n    return render_template('viewvideo.html', path=path)\n@app.route('/userregister', methods=['GET', 'POST'])\ndef register():\n    if request.method == 'POST':\n        name = request.form['name']\n        email = request.form['email']\n        phone = request.form['phone']\n        gender = request.form['gender']",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "register",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def register():\n    if request.method == 'POST':\n        name = request.form['name']\n        email = request.form['email']\n        phone = request.form['phone']\n        gender = request.form['gender']\n        aadno = request.form['aadno']\n        password = request.form['password']\n        con = dbconnection()\n        cursor = con.cursor()",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "login",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def login():\n    if request.method == 'POST':\n        email = request.form['email']\n        password = request.form['password']\n        ltype = request.form['ltype']\n        if ltype=='police':\n            con = dbconnection()\n            cursor = con.cursor()\n            cursor.execute(\"select * from police where email='{}' and password='{}'\".format(email,password))\n            res = cursor.fetchall()",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "send_location",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def send_location():\n    data = request.json\n    latitude = data.get('latitude')\n    longitude = data.get('longitude')\n    # Handle the latitude and longitude here (e.g., save to the database, trigger alerts, etc.)\n    print(f\"Received location: Latitude {latitude}, Longitude {longitude}\")\n    # Get current date and time\n    # Get the current date and time\n    current_datetime = datetime.now()\n    # Get the date and time separately",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "savecriminal",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def savecriminal():\n    cname = request.form['cname']\n    crimes = request.form['crimes']\n    height = request.form['height']\n    identification = request.form['identification']\n    description = request.form['description']\n    uploaded_file = request.files['photo']\n    if uploaded_file.filename != '':\n        # Save the uploaded file to a specific folder\n        filename = 'static/uploads/criminals/' + uploaded_file.filename",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "pviewcriminals",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def pviewcriminals():\n    con = dbconnection()\n    cursor = con.cursor()\n    cursor.execute(\"select * from criminals\")\n    res = cursor.fetchall()\n    if res==[]:\n        message = Markup(\"<h3>Failed! criminals not found</h3>\")\n        flash(message)\n        return render_template('pviewcriminals.html', title='criminals')\n    else:",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "deletec",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def deletec():\n    id =request.args.get('id')\n    con = dbconnection()\n    cursor = con.cursor()\n    cursor.execute(\"delete from criminals where id={}\".format(int(id)))\n    con.commit()\n    con.close()\n    message = Markup(\"<h3>Success! Row Deleted</h3>\")\n    flash(message)\n    return redirect(url_for('pviewcriminals'))",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "deletecomplaint",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def deletecomplaint():\n    id =request.args.get('id')\n    con = dbconnection()\n    cursor = con.cursor()\n    cursor.execute(\"delete from complaint where id={}\".format(int(id)))\n    con.commit()\n    con.close()\n    message = Markup(\"<h3>Success! Row Deleted</h3>\")\n    flash(message)\n    return redirect(url_for('viewcomplaintspage'))",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "complaintreg",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def complaintreg():\n    uid=session['uid']\n    crimetype = request.form['crimetype']\n    place = request.form['place']\n    des = request.form['des']\n    lat = request.form['lat']\n    longit = request.form['longit']\n    uploaded_file1 = request.files['photo']\n    uploaded_file2 = request.files['video']\n    imagefilename=\"\"",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "encrypt_data",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def encrypt_data(data):\n    \"\"\"Encrypts data using Fernet.\"\"\"\n    encrypted_data = cipher_suite.encrypt(data.encode())  # Encrypts the data\n    return encrypted_data.decode()  # Convert to string for storage\ndef decrypt_data(encrypted_data):\n    \"\"\"Decrypts data using Fernet.\"\"\"\n    return cipher_suite.decrypt(encrypted_data.encode()).decode()  # Convert to bytes for decryption\ndef convert_to_mp4(input_path, output_path):\n    ffmpeg_command = [\n        'ffmpeg', '-i', input_path,",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "decrypt_data",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def decrypt_data(encrypted_data):\n    \"\"\"Decrypts data using Fernet.\"\"\"\n    return cipher_suite.decrypt(encrypted_data.encode()).decode()  # Convert to bytes for decryption\ndef convert_to_mp4(input_path, output_path):\n    ffmpeg_command = [\n        'ffmpeg', '-i', input_path,\n        '-vcodec', 'h264', '-acodec', 'aac',\n        '-strict', 'experimental', output_path\n    ]\n    subprocess.run(ffmpeg_command)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "convert_to_mp4",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def convert_to_mp4(input_path, output_path):\n    ffmpeg_command = [\n        'ffmpeg', '-i', input_path,\n        '-vcodec', 'h264', '-acodec', 'aac',\n        '-strict', 'experimental', output_path\n    ]\n    subprocess.run(ffmpeg_command)\n@app.route('/complaintreg', methods=['POST'])\ndef complaintreg():\n    uid = session['uid']",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "complaintreg",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def complaintreg():\n    uid = session['uid']\n    crimetype = request.form['crimetype']\n    place = request.form['place']\n    des = request.form['des']\n    lat = request.form['lat']\n    longit = request.form['longit']\n    uploaded_file1 = request.files['photo']\n    uploaded_file2 = request.files['video']\n    imagefilename = \"\"",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "update_complaint",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def update_complaint():\n    data = request.get_json()\n    complaint_id = data['id']\n    update_text = update_text = data['update']\n    encstatus = encrypt_data(update_text)\n    con = dbconnection()\n    cursor = con.cursor()\n    cursor.execute(\"update complaints set status='{}' where id={}\".format(encstatus,int(complaint_id)))\n    con.commit()\n    con.close()",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "load_data",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def load_data():\n    crime_data = pd.read_csv('10_Property_stolen_and_recovered.csv')\n    rape_data = pd.read_csv('20_Victims_of_rape.csv')\n    return crime_data, rape_data\n# Generate graphs for both datasets\ndef create_graphs(crime_data, rape_data):\n    graphs = []\n    # Bar graph for Cases Recovered vs Stolen\n    plt.figure()\n    crime_data.groupby('Area_Name').sum()['Cases_Property_Recovered'].plot(kind='bar', color='green', alpha=0.7, label='Recovered')",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "create_graphs",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def create_graphs(crime_data, rape_data):\n    graphs = []\n    # Bar graph for Cases Recovered vs Stolen\n    plt.figure()\n    crime_data.groupby('Area_Name').sum()['Cases_Property_Recovered'].plot(kind='bar', color='green', alpha=0.7, label='Recovered')\n    crime_data.groupby('Area_Name').sum()['Cases_Property_Stolen'].plot(kind='bar', color='red', alpha=0.7, label='Stolen')\n    plt.title('Cases of Property Recovered vs Stolen')\n    plt.ylabel('Number of Cases')\n    plt.xlabel('Area')\n    plt.legend()",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "crimerates",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def crimerates():\n    crime_data, rape_data = load_data()\n    graphs = create_graphs(crime_data, rape_data)\n    return render_template('crimegraph.html', graphs=graphs)\nif __name__ == '__main__':\n    app.run(debug=True,host='0.0.0.0',port=5000)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app = Flask(__name__)\napp.config['SECRET_KEY'] = 'secret_key'\nkey = b'cAtnnFlf_IYaDwMX1twUVg3VDityfm08ushF7M8J4w4='\ncipher_suite = Fernet(key)\ndef dbconnection():\n    con = mq.connect(host='localhost', database='crime',user='root',password='root')\n    return con\n@app.route('/')\ndef home():\n    return render_template('index.html', title='home')",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app.config['SECRET_KEY']",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app.config['SECRET_KEY'] = 'secret_key'\nkey = b'cAtnnFlf_IYaDwMX1twUVg3VDityfm08ushF7M8J4w4='\ncipher_suite = Fernet(key)\ndef dbconnection():\n    con = mq.connect(host='localhost', database='crime',user='root',password='root')\n    return con\n@app.route('/')\ndef home():\n    return render_template('index.html', title='home')\n@app.route('/loginpage')",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "key",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "key = b'cAtnnFlf_IYaDwMX1twUVg3VDityfm08ushF7M8J4w4='\ncipher_suite = Fernet(key)\ndef dbconnection():\n    con = mq.connect(host='localhost', database='crime',user='root',password='root')\n    return con\n@app.route('/')\ndef home():\n    return render_template('index.html', title='home')\n@app.route('/loginpage')\ndef loginpage():",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "cipher_suite",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "cipher_suite = Fernet(key)\ndef dbconnection():\n    con = mq.connect(host='localhost', database='crime',user='root',password='root')\n    return con\n@app.route('/')\ndef home():\n    return render_template('index.html', title='home')\n@app.route('/loginpage')\ndef loginpage():\n    return render_template('login.html',title='login')",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "convert_to_mp4",
+        "kind": 2,
+        "importPath": "test",
+        "description": "test",
+        "peekOfCode": "def convert_to_mp4(input_path, output_path):\n    ffmpeg_command = [\n        'ffmpeg', '-i', input_path,\n        '-vcodec', 'h264', '-acodec', 'aac',\n        '-strict', 'experimental', output_path\n    ]\n    subprocess.run(ffmpeg_command)\nconvert_to_mp4(\"../static/uploads/crimevideos/weapon detection coding.mp4\",\"../static/uploads/weapon detection coding.mp4\")\nprint(\"done\")",
+        "detail": "test",
+        "documentation": {}
+    },
+    {
+        "label": "key",
+        "kind": 5,
+        "importPath": "test",
+        "description": "test",
+        "peekOfCode": "key = Fernet.generate_key()\nprint(\"Generated key:\", key.decode())  # Print and save this key securely'''\nimport subprocess\ndef convert_to_mp4(input_path, output_path):\n    ffmpeg_command = [\n        'ffmpeg', '-i', input_path,\n        '-vcodec', 'h264', '-acodec', 'aac',\n        '-strict', 'experimental', output_path\n    ]\n    subprocess.run(ffmpeg_command)",
+        "detail": "test",
+        "documentation": {}
+    }
+]

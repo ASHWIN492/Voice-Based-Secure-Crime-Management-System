@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crime Data Visualization</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Two columns */
+            gap: 10px; /* Space between images */
+            justify-items: center; /* Center items in grid */
+            margin: 20px; /* Margin around the grid */
+        }
+        img {
+            width: 100%; /* Set image width */
+            height: auto; /* Maintain aspect ratio */
+            border: 1px solid #ccc; /* Optional: Add border to images */
+            border-radius: 4px; /* Optional: Add border radius */
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="/">LOGOUT</a>
+        <a href="crimerates" target="_blank" class="active">VIEW CRIME RATE</a>
+        <a href="viewcomplaintspage">VIEW COMPLAINT STATUS</a>
+        <a href="regcomplaintpage" >REGISTER COMPLAINT</a>
+        <a href="uviewcriminals" >CRIMINAL LIST</a>
+    
+    </div>
+    <h1>Crime Data Visualization</h1>
+    <div class="gallery">
+        {% for graph in graphs %}
+            <div>
+                <img src="{{ graph }}" alt="Graph">
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
