@@ -6,4 +6,4 @@ requests
 matplotlib
 cryptography
 gunicorn
-dotenv
+python-dotenv
