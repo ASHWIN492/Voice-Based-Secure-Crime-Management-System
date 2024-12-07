@@ -2,3 +2,4 @@ mysql-connector-python==8.0.5
 Flask
 matplotlib
 pandas
+gunicorn
