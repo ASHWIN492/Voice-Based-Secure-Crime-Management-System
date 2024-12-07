@@ -1,6 +1,7 @@
-mysql-connector-python==8.0.5
 Flask
-matplotlib
+mysql-connector-python
+markupsafe
 pandas
-Gunicorn
 requests
+matplotlib
+cryptography
